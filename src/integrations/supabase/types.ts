@@ -9,7 +9,63 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      entregas: {
+        Row: {
+          created_at: string
+          curso: string
+          id: string
+          quantidade: number
+          semestre: string
+          tipo_residuo: string
+          turma: string
+          turno: string
+          unidade: string
+        }
+        Insert: {
+          created_at?: string
+          curso: string
+          id?: string
+          quantidade: number
+          semestre: string
+          tipo_residuo: string
+          turma: string
+          turno: string
+          unidade: string
+        }
+        Update: {
+          created_at?: string
+          curso?: string
+          id?: string
+          quantidade?: number
+          semestre?: string
+          tipo_residuo?: string
+          turma?: string
+          turno?: string
+          unidade?: string
+        }
+        Relationships: []
+      }
+      metas: {
+        Row: {
+          created_at: string
+          id: string
+          quantidade_meta: number
+          tipo_residuo: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          quantidade_meta: number
+          tipo_residuo: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          quantidade_meta?: number
+          tipo_residuo?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
