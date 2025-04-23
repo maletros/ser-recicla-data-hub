@@ -24,70 +24,64 @@ Este sistema foi desenvolvido para a Semana Ubíqua como parte do **Desafio 1: S
   - Metas de reciclagem atingidas
   - Gráficos de evolução semanal
 
-- **Documentação da API**: Referência completa dos endpoints RESTful disponíveis para integração.
+- **API RESTful**: API completa para integração com outros sistemas:
+  - Endpoints para consulta e registro de entregas
+  - Documentação interativa disponível em `/api-docs`
+  - Autenticação e autorização via Supabase
 
 ## 💻 Tecnologias Utilizadas
 
 - **Frontend**: React, TypeScript, Tailwind CSS
-- **Gestão de Estado**: React Context API
+- **Backend**: Supabase (PostgreSQL)
 - **Visualização de Dados**: Recharts
-- **Formulários**: React Hook Form, Zod
 - **UI Components**: Shadcn UI
+- **API**: REST com Supabase
 
 ## 🔧 Como Executar o Projeto
 
-1. Clone este repositório:
-```bash
-git clone [URL_DO_REPOSITORIO]
-```
-
+1. Clone este repositório
 2. Instale as dependências:
-```bash
-cd ser-recicla-data-hub
+\`\`\`bash
 npm install
-```
+\`\`\`
 
 3. Execute a aplicação:
-```bash
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
-4. Acesse a aplicação no navegador:
-```
+4. Acesse no navegador:
+\`\`\`
 http://localhost:8080
-```
+\`\`\`
 
-## 🔍 Estrutura do Projeto
+## 📊 Estrutura do Banco de Dados
 
-- `/src/components`: Componentes reutilizáveis da interface
-- `/src/context`: Contexto React para gerenciamento de estado
-- `/src/data`: Dados simulados e mockups
-- `/src/pages`: Páginas principais do aplicativo
-- `/src/types`: Definições de tipos TypeScript
-- `/src/lib`: Utilitários e funções auxiliares
+### Tabela: entregas
+- id (UUID, PK)
+- quantidade (DECIMAL)
+- tipo_residuo (TEXT)
+- turma (TEXT)
+- curso (TEXT)
+- semestre (TEXT)
+- turno (TEXT)
+- unidade (TEXT)
+- created_at (TIMESTAMP)
 
-## ⚙️ API RESTful
+### Tabela: metas
+- id (UUID, PK)
+- tipo_residuo (TEXT)
+- quantidade_meta (DECIMAL)
+- created_at (TIMESTAMP)
 
-A documentação completa da API está disponível na rota `/api-docs` do aplicativo. Os principais endpoints são:
-
-- `GET /api/entradas`: Lista todas as entregas registradas
-- `POST /api/entradas`: Registra uma nova entrega
-- `GET /api/estatisticas`: Retorna estatísticas compiladas
-
-## 📊 Simulação de Banco de Dados
-
-Atualmente o sistema utiliza armazenamento local (localStorage) para simular a persistência de dados. Em um ambiente de produção, deve-se implementar a conexão com um banco de dados real como PostgreSQL ou MySQL.
-
-## 🔒 Autenticação
-
-A versão atual é um protótipo funcional e não implementa autenticação. Para um ambiente de produção, recomenda-se adicionar um sistema de autenticação de usuários.
-
-## 🤝 Contribuições
-
-Para contribuir com o projeto:
+## 🤝 Como Contribuir
 
 1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. Faça commit das suas alterações (`git commit -m 'Adicionando nova funcionalidade'`)
-4. Faça push para a branch (`git push origin feature/nova-funcionalidade`)
+2. Crie uma branch para sua feature
+3. Faça commit das alterações
+4. Faça push para a branch
 5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT.
