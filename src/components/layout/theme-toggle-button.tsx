@@ -22,9 +22,9 @@ export function ThemeToggleButton() {
       aria-label="Alternar modo claro/escuro"
     >
       {isDark ? (
-        <Sun className="text-yellow-400" />
+        <Sun className="text-white" />
       ) : (
-        <Moon className="text-primary" />
+        <Moon className="text-black" />
       )}
     </Button>
   );
