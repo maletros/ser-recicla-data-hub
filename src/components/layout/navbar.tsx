@@ -1,11 +1,12 @@
 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ThemeToggleButton } from "./theme-toggle-button";
 
 export function Navbar() {
   const { pathname } = useLocation();
   return (
-    <header className="bg-white py-4 shadow-sm">
+    <header className="bg-white dark:bg-background py-4 shadow-sm transition-colors">
       <div className="container mx-auto flex items-center justify-between">
         <Link to="/" className="font-bold text-xl text-primary">
           Ser Recicla
@@ -42,6 +43,7 @@ export function Navbar() {
           >
             Painel do Gestor
           </Link>
+          <ThemeToggleButton />
         </nav>
       </div>
     </header>
