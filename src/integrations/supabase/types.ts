@@ -45,6 +45,30 @@ export type Database = {
         }
         Relationships: []
       }
+      gestores: {
+        Row: {
+          cargo: string | null
+          created_at: string
+          email: string
+          id: string
+          nome: string
+        }
+        Insert: {
+          cargo?: string | null
+          created_at?: string
+          email: string
+          id: string
+          nome: string
+        }
+        Update: {
+          cargo?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          nome?: string
+        }
+        Relationships: []
+      }
       metas: {
         Row: {
           created_at: string
