@@ -6,17 +6,6 @@ import { BookUser, PieChart, LayoutDashboard } from "lucide-react";
 const Landing = () => {
   return (
     <section className="min-h-screen bg-gradient-to-b from-primary/5 to-white flex flex-col justify-between">
-      <header className="container py-8 flex items-center justify-between">
-        <Link to="/" className="font-bold text-2xl text-primary">
-          Ser Recicla
-        </Link>
-        <nav className="flex gap-4">
-          <Link to="/dashboard" className="text-sm text-muted-foreground hover:underline transition">Dashboard</Link>
-          <Link to="/registrar" className="text-sm text-muted-foreground hover:underline transition">Registrar</Link>
-          <Link to="/api-docs" className="text-sm text-muted-foreground hover:underline transition">API Docs</Link>
-          <Link to="/painel-gestor" className="text-sm text-muted-foreground hover:underline transition">Painel do Gestor</Link>
-        </nav>
-      </header>
       <div className="container flex-1 flex flex-col items-center justify-center text-center">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-primary animate-fade-in">
