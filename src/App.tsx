@@ -10,6 +10,7 @@ import ApiDocs from "./pages/ApiDocs";
 import NotFound from "./pages/NotFound";
 import AuthGestor from "./pages/AuthGestor";
 import GestorPanel from "./pages/GestorPanel";
+import Landing from "./pages/Landing";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,8 @@ const App = () => (
           <Navbar />
           <main className="flex-1">
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Landing />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/registrar" element={<Register />} />
               <Route path="/api-docs" element={<ApiDocs />} />
               <Route path="/auth-gestor" element={<AuthGestor />} />
