@@ -1,73 +1,93 @@
-# Welcome to your Lovable project
 
-## Project info
+# Ser Recicla - Sistema de Aquisição de Dados
 
-**URL**: https://lovable.dev/projects/3bf1b7c4-bc69-408b-af17-7000a803a501
+Sistema de aquisição de dados desenvolvido para o Projeto Ser Recicla da Unama, como parte da iniciativa para a COP 30 em Belém.
 
-## How can I edit this code?
+## 🌍 Sobre o Projeto
 
-There are several ways of editing your application.
+Este sistema foi desenvolvido para a Semana Ubíqua como parte do **Desafio 1: Sistema de Aquisição de Dados do Projeto Ser Recicla**. O objetivo é criar uma solução tecnológica que apoie a gestão da coleta e monitoramento de resíduos recicláveis nas unidades da Unama, incentivando a participação das turmas na entrega de materiais como alumínio, vidro, pano e PET.
 
-**Use Lovable**
+## 🚀 Funcionalidades
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3bf1b7c4-bc69-408b-af17-7000a803a501) and start prompting.
+- **Registro de Entregas**: Interface para registrar informações sobre os materiais recicláveis entregues, incluindo:
+  - Quantidade (em Kg)
+  - Tipo de resíduo (alumínio, vidro, pano, PET)
+  - Turma
+  - Curso
+  - Semestre
+  - Turno
+  - Unidade
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Dashboard Analítico**: Visualização de dados em tempo real com:
+  - Total reciclado por tipo de material
+  - Comparativo entre turmas/unidades
+  - Metas de reciclagem atingidas
+  - Gráficos de evolução semanal
 
-**Use your preferred IDE**
+- **Documentação da API**: Referência completa dos endpoints RESTful disponíveis para integração.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 💻 Tecnologias Utilizadas
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Gestão de Estado**: React Context API
+- **Visualização de Dados**: Recharts
+- **Formulários**: React Hook Form, Zod
+- **UI Components**: Shadcn UI
 
-Follow these steps:
+## 🔧 Como Executar o Projeto
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. Clone este repositório:
+```bash
+git clone [URL_DO_REPOSITORIO]
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Instale as dependências:
+```bash
+cd ser-recicla-data-hub
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Execute a aplicação:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Acesse a aplicação no navegador:
+```
+http://localhost:8080
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔍 Estrutura do Projeto
 
-**Use GitHub Codespaces**
+- `/src/components`: Componentes reutilizáveis da interface
+- `/src/context`: Contexto React para gerenciamento de estado
+- `/src/data`: Dados simulados e mockups
+- `/src/pages`: Páginas principais do aplicativo
+- `/src/types`: Definições de tipos TypeScript
+- `/src/lib`: Utilitários e funções auxiliares
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## ⚙️ API RESTful
 
-## What technologies are used for this project?
+A documentação completa da API está disponível na rota `/api-docs` do aplicativo. Os principais endpoints são:
 
-This project is built with:
+- `GET /api/entradas`: Lista todas as entregas registradas
+- `POST /api/entradas`: Registra uma nova entrega
+- `GET /api/estatisticas`: Retorna estatísticas compiladas
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📊 Simulação de Banco de Dados
 
-## How can I deploy this project?
+Atualmente o sistema utiliza armazenamento local (localStorage) para simular a persistência de dados. Em um ambiente de produção, deve-se implementar a conexão com um banco de dados real como PostgreSQL ou MySQL.
 
-Simply open [Lovable](https://lovable.dev/projects/3bf1b7c4-bc69-408b-af17-7000a803a501) and click on Share -> Publish.
+## 🔒 Autenticação
 
-## Can I connect a custom domain to my Lovable project?
+A versão atual é um protótipo funcional e não implementa autenticação. Para um ambiente de produção, recomenda-se adicionar um sistema de autenticação de usuários.
 
-Yes, you can!
+## 🤝 Contribuições
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Para contribuir com o projeto:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Faça commit das suas alterações (`git commit -m 'Adicionando nova funcionalidade'`)
+4. Faça push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
