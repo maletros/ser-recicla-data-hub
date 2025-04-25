@@ -1,9 +1,9 @@
-
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { TotalMaterialCard } from "@/components/dashboard/total-material-card";
 import { ComparativeChart } from "@/components/dashboard/comparative-chart";
 import { EvolutionChart } from "@/components/dashboard/evolution-chart";
+import { CourseStatsCard } from "@/components/dashboard/course-stats-card";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
@@ -11,6 +11,7 @@ export default function Dashboard() {
   const [materialStats, setMaterialStats] = useState([]);
   const [comparativeStats, setComparativeStats] = useState([]);
   const [evolutionData, setEvolutionData] = useState([]);
+  const [courseStats, setCourseStats] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const materialMetas = {
@@ -59,7 +60,7 @@ export default function Dashboard() {
             });
           }
           return acc;
-        }, []);
+        });
 
         setComparativeStats(unidadeStats);
 
@@ -76,6 +77,24 @@ export default function Dashboard() {
         }));
 
         setEvolutionData(weeklyData);
+
+        // Buscar dados por curso
+        const { data: courseData } = await supabase
+          .from("entregas")
+          .select("curso, quantidade")
+          .order("curso");
+
+        const courseStats = courseData.reduce((acc, curr) => {
+          const existing = acc.find(item => item.curso === curr.curso);
+          if (existing) {
+            existing.total_quantidade += curr.quantidade;
+          } else {
+            acc.push({ curso: curr.curso, total_quantidade: curr.quantidade });
+          }
+          return acc;
+        });
+
+        setCourseStats(courseStats);
         setLoading(false);
       } catch (error) {
         console.error("Erro ao carregar dados:", error);
@@ -132,6 +151,7 @@ export default function Dashboard() {
           data={comparativeStats} 
           title="Comparativo por Unidade" 
         />
+        <CourseStatsCard data={courseStats} />
         <EvolutionChart data={evolutionData} />
       </div>
     </div>

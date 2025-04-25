@@ -23,6 +23,7 @@ interface ComparativeStats {
   pet: number;
   vidro: number;
   pano: number;
+  curso?: string;
 }
 
 interface ComparativeChartProps {
@@ -40,8 +41,21 @@ export function ComparativeChart({ data, title }: ComparativeChartProps) {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="nome" />
-            <YAxis />
+            <XAxis 
+              dataKey="nome" 
+              label={{ 
+                value: 'Unidade',
+                position: 'insideBottom',
+                offset: -5
+              }}
+            />
+            <YAxis 
+              label={{ 
+                value: 'Quantidade (kg)', 
+                angle: -90, 
+                position: 'insideLeft'
+              }}
+            />
             <Tooltip />
             <Legend />
             <Bar dataKey="aluminio" name="Alumínio" fill="#2563eb" />
