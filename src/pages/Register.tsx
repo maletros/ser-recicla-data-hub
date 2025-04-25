@@ -95,6 +95,7 @@ export default function Register() {
       semestre: form.semestre,
       turno: form.turno,
       unidade: form.unidade,
+      turma: null, // Explicitly set turma to null
     });
 
     if (error) {

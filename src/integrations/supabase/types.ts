@@ -17,7 +17,7 @@ export type Database = {
           quantidade: number
           semestre: string
           tipo_residuo: string
-          turma: string
+          turma: string | null
           turno: string
           unidade: string
         }
@@ -28,7 +28,7 @@ export type Database = {
           quantidade: number
           semestre: string
           tipo_residuo: string
-          turma: string
+          turma?: string | null
           turno: string
           unidade: string
         }
@@ -39,7 +39,7 @@ export type Database = {
           quantidade?: number
           semestre?: string
           tipo_residuo?: string
-          turma?: string
+          turma?: string | null
           turno?: string
           unidade?: string
         }
