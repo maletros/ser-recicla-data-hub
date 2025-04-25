@@ -1,4 +1,3 @@
-
 # Ser Recicla - Sistema de Aquisição de Dados
 
 Sistema de aquisição de dados desenvolvido para o Projeto Ser Recicla da Unama, como parte da iniciativa para a COP 30 em Belém.
@@ -85,3 +84,35 @@ http://localhost:8080
 ## 📝 Licença
 
 Este projeto está sob a licença MIT.
+
+## 🔐 Painel do Gestor
+
+O Painel do Gestor é uma área restrita projetada para administradores e coordenadores do projeto Ser Recicla. Sua principal função é fornecer acesso exclusivo ao dashboard completo de análise dos dados de reciclagem.
+
+### Funcionalidades
+
+- **Autenticação Segura**: Acesso mediante cadastro e login específicos
+- **Dashboard Exclusivo**: Visualização completa dos dados de reciclagem
+- **Painel de Controle**: Acompanhamento detalhado das entregas de materiais recicláveis
+
+### Como Acessar
+
+1. **Cadastro**:
+   - Navegue até a página "/painel-gestor"
+   - Clique em "Cadastrar" para criar uma nova conta
+   - Preencha os campos obrigatórios: Nome, Email e Senha
+   - Após o cadastro, você receberá uma confirmação por email
+
+2. **Login**:
+   - Na mesma página "/painel-gestor"
+   - Insira seu email e senha cadastrados
+   - Após autenticação, será redirecionado para o Painel do Gestor
+
+### Recursos do Painel
+
+- Visualização de estatísticas de reciclagem
+- Gráficos comparativos entre unidades
+- Evolução das entregas de materiais recicláveis
+- Acompanhamento de metas de reciclagem
+
+**Nota**: O acesso ao Painel do Gestor é restrito e destinado apenas a administradores autorizados do projeto Ser Recicla.
