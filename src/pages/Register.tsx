@@ -18,16 +18,17 @@ const CURSOS = [
   "Sistemas de Informação",
 ];
 
-const TURMAS = [
-  "CC-A",
-  "CC-B",
-  "SI-A",
-];
-
 const SEMESTRES = [
   "1º Semestre",
   "2º Semestre",
   "3º Semestre",
+  "4º Semestre",
+  "5º Semestre",
+  "6º Semestre",
+  "7º Semestre",
+  "8º Semestre",
+  "9º Semestre",
+  "10º Semestre",
 ];
 
 const TURNOS = [
@@ -49,7 +50,6 @@ export default function Register() {
     quantidade: "",
     tipo_residuo: "",
     curso: "",
-    turma: "",
     semestre: "",
     turno: "",
     unidade: "",
@@ -75,7 +75,6 @@ export default function Register() {
       !quantidade || quantidade <= 0 || quantidade > 100 ||
       !form.tipo_residuo ||
       !form.curso ||
-      !form.turma ||
       !form.semestre ||
       !form.turno ||
       !form.unidade
@@ -93,7 +92,6 @@ export default function Register() {
       quantidade,
       tipo_residuo: form.tipo_residuo,
       curso: form.curso,
-      turma: form.turma,
       semestre: form.semestre,
       turno: form.turno,
       unidade: form.unidade,
@@ -114,7 +112,6 @@ export default function Register() {
         quantidade: "",
         tipo_residuo: "",
         curso: "",
-        turma: "",
         semestre: "",
         turno: "",
         unidade: "",
@@ -193,24 +190,6 @@ export default function Register() {
                 </select>
               </div>
               <div>
-                <label className="text-sm font-medium" htmlFor="turma">Turma</label>
-                <select
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
-                  id="turma"
-                  name="turma"
-                  value={form.turma}
-                  onChange={handleChange}
-                  disabled={loading}
-                >
-                  <option value="">Selecione...</option>
-                  {TURMAS.map((op) => (
-                    <option key={op} value={op}>{op}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
                 <label className="text-sm font-medium" htmlFor="semestre">Semestre</label>
                 <select
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
@@ -226,6 +205,8 @@ export default function Register() {
                   ))}
                 </select>
               </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="text-sm font-medium" htmlFor="turno">Turno</label>
                 <select
@@ -242,22 +223,22 @@ export default function Register() {
                   ))}
                 </select>
               </div>
-            </div>
-            <div>
-              <label className="text-sm font-medium" htmlFor="unidade">Unidade</label>
-              <select
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
-                id="unidade"
-                name="unidade"
-                value={form.unidade}
-                onChange={handleChange}
-                disabled={loading}
-              >
-                <option value="">Selecione...</option>
-                {UNIDADES.map((op) => (
-                  <option key={op} value={op}>{op}</option>
-                ))}
-              </select>
+              <div>
+                <label className="text-sm font-medium" htmlFor="unidade">Unidade</label>
+                <select
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
+                  id="unidade"
+                  name="unidade"
+                  value={form.unidade}
+                  onChange={handleChange}
+                  disabled={loading}
+                >
+                  <option value="">Selecione...</option>
+                  {UNIDADES.map((op) => (
+                    <option key={op} value={op}>{op}</option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <Button
