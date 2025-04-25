@@ -20,12 +20,6 @@ export function Navbar() {
             Início
           </Link>
           <Link
-            to="/dashboard"
-            className={`font-medium text-sm transition hover:text-secondary${pathname === "/dashboard" ? " text-secondary" : ""}`}
-          >
-            Dashboard
-          </Link>
-          <Link
             to="/registrar"
             className={`font-medium text-sm transition hover:text-secondary${pathname === "/registrar" ? " text-secondary" : ""}`}
           >
