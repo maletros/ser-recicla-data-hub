@@ -26,7 +26,7 @@ export function CourseStatsCard({ data }: CourseStatsCardProps) {
       <CardContent>
         <ScrollArea className="h-[400px] pr-4">
           <div className="space-y-4">
-            {data.map((stat) => (
+            {Array.isArray(data) && data.map((stat) => (
               <div key={stat.curso} className="flex items-center justify-between">
                 <span className="font-medium truncate">{stat.curso}</span>
                 <span className="text-sm text-muted-foreground">

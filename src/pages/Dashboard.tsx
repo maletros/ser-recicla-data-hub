@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { TotalMaterialCard } from "@/components/dashboard/total-material-card";
@@ -7,11 +8,35 @@ import { CourseStatsCard } from "@/components/dashboard/course-stats-card";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
+interface MaterialStat {
+  tipoResiduo: string;
+  quantidade: number;
+}
+
+interface ComparativeStat {
+  nome: string;
+  aluminio: number;
+  pet: number;
+  vidro: number;
+  pano: number;
+}
+
+interface EvolutionStat {
+  data: string;
+  quantidade: number;
+  tipo_residuo: string;
+}
+
+interface CourseStat {
+  curso: string;
+  total_quantidade: number;
+}
+
 export default function Dashboard() {
-  const [materialStats, setMaterialStats] = useState([]);
-  const [comparativeStats, setComparativeStats] = useState([]);
-  const [evolutionData, setEvolutionData] = useState([]);
-  const [courseStats, setCourseStats] = useState([]);
+  const [materialStats, setMaterialStats] = useState<MaterialStat[]>([]);
+  const [comparativeStats, setComparativeStats] = useState<ComparativeStat[]>([]);
+  const [evolutionData, setEvolutionData] = useState<EvolutionStat[]>([]);
+  const [courseStats, setCourseStats] = useState<CourseStat[]>([]);
   const [loading, setLoading] = useState(true);
 
   const materialMetas = {
@@ -29,7 +54,7 @@ export default function Dashboard() {
           .from("entregas")
           .select("tipo_residuo, quantidade");
         
-        const stats = materialData.reduce((acc, curr) => {
+        const stats = materialData.reduce((acc: MaterialStat[], curr) => {
           const existing = acc.find(item => item.tipoResiduo === curr.tipo_residuo);
           if (existing) {
             existing.quantidade += curr.quantidade;
@@ -46,10 +71,10 @@ export default function Dashboard() {
           .from("entregas")
           .select("unidade, tipo_residuo, quantidade");
 
-        const unidadeStats = unidadeData.reduce((acc, curr) => {
+        const unidadeStats = unidadeData.reduce((acc: ComparativeStat[], curr) => {
           const unit = acc.find(u => u.nome === curr.unidade);
           if (unit) {
-            unit[curr.tipo_residuo] += curr.quantidade;
+            unit[curr.tipo_residuo as keyof Omit<ComparativeStat, 'nome'>] += curr.quantidade;
           } else {
             acc.push({
               nome: curr.unidade,
@@ -60,7 +85,7 @@ export default function Dashboard() {
             });
           }
           return acc;
-        });
+        }, []);
 
         setComparativeStats(unidadeStats);
 
@@ -84,7 +109,7 @@ export default function Dashboard() {
           .select("curso, quantidade")
           .order("curso");
 
-        const courseStats = courseData.reduce((acc, curr) => {
+        const courseStats = courseData.reduce((acc: CourseStat[], curr) => {
           const existing = acc.find(item => item.curso === curr.curso);
           if (existing) {
             existing.total_quantidade += curr.quantidade;
@@ -92,7 +117,7 @@ export default function Dashboard() {
             acc.push({ curso: curr.curso, total_quantidade: curr.quantidade });
           }
           return acc;
-        });
+        }, []);
 
         setCourseStats(courseStats);
         setLoading(false);
