@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { TotalMaterialCard } from "@/components/dashboard/total-material-card";
@@ -69,7 +70,7 @@ export default function Dashboard() {
           .from("entregas")
           .select("unidade, tipo_residuo, quantidade");
 
-        const unidadeStats = unidadeData.reduce((acc: ComparativeStat[], curr) => {
+        const unidadeStats: ComparativeStat[] = unidadeData.reduce((acc: ComparativeStat[], curr) => {
           const unit = acc.find(u => u.nome === curr.unidade);
           if (unit) {
             unit[curr.tipo_residuo as keyof Omit<ComparativeStat, 'nome'>] += curr.quantidade;
@@ -83,7 +84,7 @@ export default function Dashboard() {
             });
           }
           return acc;
-        });
+        }, []);
 
         setComparativeStats(unidadeStats);
 
@@ -105,7 +106,7 @@ export default function Dashboard() {
           .select("curso, semestre, quantidade")
           .order("curso");
 
-        const courseStats = courseData.reduce((acc: CourseStat[], curr) => {
+        const courseStats: CourseStat[] = courseData.reduce((acc: CourseStat[], curr) => {
           const existing = acc.find(
             item => item.curso === curr.curso && item.semestre === curr.semestre
           );
@@ -119,7 +120,7 @@ export default function Dashboard() {
             });
           }
           return acc;
-        });
+        }, []);
 
         setCourseStats(courseStats);
         setLoading(false);
