@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -10,12 +9,6 @@ const TIPO_RESIDUO = [
   { label: "PET", value: "pet" },
   { label: "Vidro", value: "vidro" },
   { label: "Pano", value: "pano" },
-];
-
-const CURSOS = [
-  "Engenharia Ambiental",
-  "Ciência da Computação",
-  "Sistemas de Informação",
 ];
 
 const SEMESTRES = [
@@ -69,7 +62,6 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
 
-    // Validar campos principais
     const quantidade = parseFloat(form.quantidade.replace(",", "."));
     if (
       !quantidade || quantidade <= 0 || quantidade > 100 ||
@@ -95,7 +87,7 @@ export default function Register() {
       semestre: form.semestre,
       turno: form.turno,
       unidade: form.unidade,
-      turma: null, // Explicitly set turma to null
+      turma: null,
     });
 
     if (error) {
@@ -176,19 +168,15 @@ export default function Register() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="text-sm font-medium" htmlFor="curso">Curso</label>
-                <select
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
+                <Input
+                  type="text"
                   id="curso"
                   name="curso"
+                  placeholder="Digite o nome do curso"
                   value={form.curso}
                   onChange={handleChange}
                   disabled={loading}
-                >
-                  <option value="">Selecione...</option>
-                  {CURSOS.map((op) => (
-                    <option key={op} value={op}>{op}</option>
-                  ))}
-                </select>
+                />
               </div>
               <div>
                 <label className="text-sm font-medium" htmlFor="semestre">Semestre</label>
