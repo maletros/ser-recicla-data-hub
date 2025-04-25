@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { TotalMaterialCard } from "@/components/dashboard/total-material-card";
@@ -29,6 +28,7 @@ interface EvolutionStat {
 
 interface CourseStat {
   curso: string;
+  semestre: string;
   total_quantidade: number;
 }
 
@@ -49,7 +49,6 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // Buscar estatísticas por material
         const { data: materialData } = await supabase
           .from("entregas")
           .select("tipo_residuo, quantidade");
@@ -66,7 +65,6 @@ export default function Dashboard() {
         
         setMaterialStats(stats);
 
-        // Buscar dados comparativos por unidade
         const { data: unidadeData } = await supabase
           .from("entregas")
           .select("unidade, tipo_residuo, quantidade");
@@ -85,11 +83,10 @@ export default function Dashboard() {
             });
           }
           return acc;
-        }, []);
+        });
 
         setComparativeStats(unidadeStats);
 
-        // Buscar dados de evolução
         const { data: evolutionStats } = await supabase
           .from("entregas")
           .select("created_at, quantidade, tipo_residuo")
@@ -103,21 +100,26 @@ export default function Dashboard() {
 
         setEvolutionData(weeklyData);
 
-        // Buscar dados por curso
         const { data: courseData } = await supabase
           .from("entregas")
-          .select("curso, quantidade")
+          .select("curso, semestre, quantidade")
           .order("curso");
 
         const courseStats = courseData.reduce((acc: CourseStat[], curr) => {
-          const existing = acc.find(item => item.curso === curr.curso);
+          const existing = acc.find(
+            item => item.curso === curr.curso && item.semestre === curr.semestre
+          );
           if (existing) {
             existing.total_quantidade += curr.quantidade;
           } else {
-            acc.push({ curso: curr.curso, total_quantidade: curr.quantidade });
+            acc.push({ 
+              curso: curr.curso, 
+              semestre: curr.semestre,
+              total_quantidade: curr.quantidade 
+            });
           }
           return acc;
-        }, []);
+        });
 
         setCourseStats(courseStats);
         setLoading(false);
@@ -129,7 +131,6 @@ export default function Dashboard() {
 
     fetchData();
 
-    // Subscrever para atualizações em tempo real
     const channel = supabase
       .channel("schema-db-changes")
       .on(

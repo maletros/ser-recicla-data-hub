@@ -10,6 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface CourseStats {
   curso: string;
+  semestre: string;
   total_quantidade: number;
 }
 
@@ -27,8 +28,13 @@ export function CourseStatsCard({ data }: CourseStatsCardProps) {
         <ScrollArea className="h-[400px] pr-4">
           <div className="space-y-4">
             {Array.isArray(data) && data.map((stat) => (
-              <div key={stat.curso} className="flex items-center justify-between">
-                <span className="font-medium truncate">{stat.curso}</span>
+              <div key={`${stat.curso}-${stat.semestre}`} className="flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="font-medium truncate">{stat.curso}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {stat.semestre}
+                  </span>
+                </div>
                 <span className="text-sm text-muted-foreground">
                   {stat.total_quantidade.toFixed(2)} kg
                 </span>
