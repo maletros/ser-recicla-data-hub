@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 
 export default function GestorPanel() {
   const { toast } = useToast();
@@ -82,58 +90,58 @@ export default function GestorPanel() {
         <div className="text-center py-10">Carregando entregas...</div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full border rounded">
-            <thead>
-              <tr className="bg-neutral-100">
-                <th className="p-2">Qtd (kg)</th>
-                <th className="p-2">Tipo</th>
-                <th className="p-2">Turma</th>
-                <th className="p-2">Curso</th>
-                <th className="p-2">Semestre</th>
-                <th className="p-2">Turno</th>
-                <th className="p-2">Unidade</th>
-                <th className="p-2">Data</th>
-                <th className="p-2">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Qtd (kg)</TableHead>
+                <TableHead>Tipo</TableHead>
+                <TableHead>Turma</TableHead>
+                <TableHead>Curso</TableHead>
+                <TableHead>Semestre</TableHead>
+                <TableHead>Turno</TableHead>
+                <TableHead>Unidade</TableHead>
+                <TableHead>Data</TableHead>
+                <TableHead>Ações</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {entregas.map((item: any) => (
-                <tr key={item.id} className="border-t">
+                <TableRow key={item.id}>
                   {edit?.id === item.id ? (
                     <>
-                      <td className="p-2"><Input name="quantidade" type="number" step="0.01" value={edit.quantidade} onChange={e => setEdit((ed: any) => ({ ...ed, quantidade: e.target.value }))} /></td>
-                      <td className="p-2"><Input name="tipo_residuo" value={edit.tipo_residuo} onChange={e => setEdit((ed: any) => ({ ...ed, tipo_residuo: e.target.value }))} /></td>
-                      <td className="p-2"><Input name="turma" value={edit.turma} onChange={e => setEdit((ed: any) => ({ ...ed, turma: e.target.value }))} /></td>
-                      <td className="p-2"><Input name="curso" value={edit.curso} onChange={e => setEdit((ed: any) => ({ ...ed, curso: e.target.value }))} /></td>
-                      <td className="p-2"><Input name="semestre" value={edit.semestre} onChange={e => setEdit((ed: any) => ({ ...ed, semestre: e.target.value }))} /></td>
-                      <td className="p-2"><Input name="turno" value={edit.turno} onChange={e => setEdit((ed: any) => ({ ...ed, turno: e.target.value }))} /></td>
-                      <td className="p-2"><Input name="unidade" value={edit.unidade} onChange={e => setEdit((ed: any) => ({ ...ed, unidade: e.target.value }))} /></td>
-                      <td className="p-2">{new Date(item.created_at).toLocaleString()}</td>
-                      <td className="p-2 flex gap-2">
+                      <TableCell><Input name="quantidade" type="number" step="0.01" value={edit.quantidade} onChange={e => setEdit((ed: any) => ({ ...ed, quantidade: e.target.value }))} /></TableCell>
+                      <TableCell><Input name="tipo_residuo" value={edit.tipo_residuo} onChange={e => setEdit((ed: any) => ({ ...ed, tipo_residuo: e.target.value }))} /></TableCell>
+                      <TableCell><Input name="turma" value={edit.turma} onChange={e => setEdit((ed: any) => ({ ...ed, turma: e.target.value }))} /></TableCell>
+                      <TableCell><Input name="curso" value={edit.curso} onChange={e => setEdit((ed: any) => ({ ...ed, curso: e.target.value }))} /></TableCell>
+                      <TableCell><Input name="semestre" value={edit.semestre} onChange={e => setEdit((ed: any) => ({ ...ed, semestre: e.target.value }))} /></TableCell>
+                      <TableCell><Input name="turno" value={edit.turno} onChange={e => setEdit((ed: any) => ({ ...ed, turno: e.target.value }))} /></TableCell>
+                      <TableCell><Input name="unidade" value={edit.unidade} onChange={e => setEdit((ed: any) => ({ ...ed, unidade: e.target.value }))} /></TableCell>
+                      <TableCell>{new Date(item.created_at).toLocaleString()}</TableCell>
+                      <TableCell className="flex gap-2">
                         <Button size="sm" onClick={handleEditSubmit}>Salvar</Button>
                         <Button size="sm" variant="outline" onClick={() => setEdit(null)}>Cancelar</Button>
-                      </td>
+                      </TableCell>
                     </>
                   ) : (
                     <>
-                      <td className="p-2">{item.quantidade}</td>
-                      <td className="p-2">{item.tipo_residuo}</td>
-                      <td className="p-2">{item.turma}</td>
-                      <td className="p-2">{item.curso}</td>
-                      <td className="p-2">{item.semestre}</td>
-                      <td className="p-2">{item.turno}</td>
-                      <td className="p-2">{item.unidade}</td>
-                      <td className="p-2">{new Date(item.created_at).toLocaleString()}</td>
-                      <td className="p-2 flex gap-2">
+                      <TableCell>{item.quantidade}</TableCell>
+                      <TableCell>{item.tipo_residuo}</TableCell>
+                      <TableCell>{item.turma}</TableCell>
+                      <TableCell>{item.curso}</TableCell>
+                      <TableCell>{item.semestre}</TableCell>
+                      <TableCell>{item.turno}</TableCell>
+                      <TableCell>{item.unidade}</TableCell>
+                      <TableCell>{new Date(item.created_at).toLocaleString()}</TableCell>
+                      <TableCell className="flex gap-2">
                         <Button size="sm" variant="outline" onClick={() => setEdit(item)}>Editar</Button>
                         <Button size="sm" variant="destructive" onClick={() => handleDelete(item.id)}>Excluir</Button>
-                      </td>
+                      </TableCell>
                     </>
                   )}
-                </tr>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       )}
     </div>
